@@ -29,16 +29,19 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var teamClientUrl = Configuration.GetSection("team:url").Value;
+            var memberClientUrl = Configuration.GetSection("member:url").Value;
+
             services.AddHttpClient<ITeamClient, HttpTeamClient>().
                     ConfigureHttpClient(c=>
                     {
-                        c.BaseAddress = new System.Uri("http://localhost:49832/api/team/", UriKind.Absolute);
+                        c.BaseAddress = new System.Uri(teamClientUrl, UriKind.Absolute);
                     });
 
             services.AddHttpClient<IMemberClient, HttpMemberClient>().
                     ConfigureHttpClient(c =>
                     {
-                        c.BaseAddress = new System.Uri("http://localhost:50168/api/member/", UriKind.Absolute);
+                        c.BaseAddress = new System.Uri(memberClientUrl, UriKind.Absolute);
                     });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
