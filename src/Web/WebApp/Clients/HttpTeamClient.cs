@@ -23,13 +23,13 @@ namespace WebApp.Clients
 
         public async Task CreateTeamAsync(Team team)
         {
-            var jsonString = JsonConvert.SerializeObject(team);
+            var jsonRequest = JsonConvert.SerializeObject(team);
             HttpResponseMessage response =
-              await httpClient.PostAsync(string.Empty, new StringContent(jsonString, Encoding.UTF8, "application/json"));
+              await httpClient.PostAsync(string.Empty, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
             }
         }
 
@@ -48,8 +48,8 @@ namespace WebApp.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                team = JsonConvert.DeserializeObject<Team>(json);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                team = JsonConvert.DeserializeObject<Team>(jsonResponse);
             }
 
             return team;
@@ -63,8 +63,8 @@ namespace WebApp.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                teams = JsonConvert.DeserializeObject<List<Team>>(json);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                teams = JsonConvert.DeserializeObject<List<Team>>(jsonResponse);
             }
 
             return teams;
@@ -72,13 +72,13 @@ namespace WebApp.Clients
 
         public async Task UpdateTeamAsync(Team team)
         {
-            var jsonString = JsonConvert.SerializeObject(team);
+            var jsonRequest = JsonConvert.SerializeObject(team);
             HttpResponseMessage response =
-              await httpClient.PutAsync(string.Format("{0}", team.TeamId), new StringContent(jsonString, Encoding.UTF8, "application/json"));
+              await httpClient.PutAsync(string.Format("{0}", team.TeamId), new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
             }
         }
     }

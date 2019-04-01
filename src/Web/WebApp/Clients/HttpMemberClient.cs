@@ -23,13 +23,13 @@ namespace WebApp.Clients
 
         public async Task CreateMemberAsync(Member member)
         {
-            var jsonString = JsonConvert.SerializeObject(member);
+            var jsonRequest = JsonConvert.SerializeObject(member);
             HttpResponseMessage response =
-              await httpClient.PostAsync(string.Empty, new StringContent(jsonString, Encoding.UTF8, "application/json"));
+              await httpClient.PostAsync(string.Empty, new StringContent(jsonRequest, Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
             }
         }
 
@@ -48,8 +48,8 @@ namespace WebApp.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                member = JsonConvert.DeserializeObject<Member>(json);
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                member = JsonConvert.DeserializeObject<Member>(jsonResponse);
             }
 
             return member;
@@ -63,8 +63,8 @@ namespace WebApp.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
-                members = JsonConvert.DeserializeObject<List<Member>>(json);
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                members = JsonConvert.DeserializeObject<List<Member>>(jsonResponse);
             }
 
             return members;
@@ -78,7 +78,7 @@ namespace WebApp.Clients
 
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
             }
         }
     }
