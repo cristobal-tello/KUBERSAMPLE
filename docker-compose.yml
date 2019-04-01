@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+ sqlserver:
+  image: microsoft/mssql-server-linux:latest
+  container_name: sqlserver
+  ports:
+   - "1433:1433"
+  environment:
+   - ACCEPT_EULA=Y 
+   - MSSQL_PID=Developer
+   - SA_PASSWORD=8jkGh47hnDw89Haq8LN2
+
+ webapp:
+  image: kubersample/web.webapp
+  build: src/Web/WebApp
+  ports:
+   - "7000:7000"
+  depends_on:
+    - apiteam
+    - apimember
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+
+ apiteam:
+  image: kubersample/api.team
+  build: src/API/API.Team
+  depends_on:
+   - sqlserver
+  ports:
+   - "5100:5100"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development
+
+ apimember:
+  image: kubersample/api.member
+  build: src/API/API.Member
+  depends_on:
+   - sqlserver
+  ports:
+  - "5200:5200"
+  environment:
+   - ASPNETCORE_ENVIRONMENT=Development

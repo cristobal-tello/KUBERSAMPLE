@@ -11,10 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Team", "API\API.Team\AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "Web\WebApp\WebApp.csproj", "{F41A8AFD-4BA1-4D54-9D73-05F93443BA61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Member", "API\API.Member\API.Member.csproj", "{66E393A5-58A7-46D4-9BE7-9D3537371070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Member", "API\API.Member\API.Member.csproj", "{66E393A5-58A7-46D4-9BE7-9D3537371070}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D52F927E-6164-4E29-A3D3-59BDA225B971}"
 	ProjectSection(SolutionItems) = preProject
+		..\docker-compose.yml = ..\docker-compose.yml
 		..\readme.rd = ..\readme.rd
 	EndProjectSection
 EndProject
