@@ -25,7 +25,7 @@ namespace WebApp.Controllers
             var configViewModel = new ConfigurationViewModel();
 
             configViewModel.Configuration.Add(new KeyValuePair<string, string>("team:url", teamClientUrl));
-            configViewModel.Configuration.Add(new KeyValuePair<string, string>("member:url", teamClientUrl));
+            configViewModel.Configuration.Add(new KeyValuePair<string, string>("member:url", memberClientUrl));
 
             return View(configViewModel);
         }
